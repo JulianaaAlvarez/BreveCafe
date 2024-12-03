@@ -1,0 +1,256 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MaestraAdministrador.master.cs" Inherits="AppBreveCafe.vista.MaestraAdministrador" %>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <asp:ContentPlaceHolder ID="Contenthead" runat="server"></asp:ContentPlaceHolder>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BreveCafe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../assets/img/logobreve.ico" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../reg/css/styles.min.css" />
+
+</head>
+
+<body>
+
+    <style>
+        .navbar-toggler {
+            border: none;
+            background-color: transparent;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.3s ease-in-out;
+                z-index: 9999;
+            }
+
+                .navbar-collapse.show {
+                    transform: translateX(100%);
+                }
+
+            .navbar-nav {
+                text-align: center;
+                width: 100%;
+            }
+
+                .navbar-nav .nav-item {
+                    margin: 10px 0;
+                }
+
+            .navbar-close-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: transparent;
+                border: none;
+                font-size: 30px;
+                color: black;
+                cursor: pointer;
+            }
+
+            .navbar-close-icon {
+                font-size: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .navbar-close-btn {
+                display: none;
+            }
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 130px; /* Altura fija del header */
+            z-index: 1000;
+            background-image: url('../assets/img/breveladrillosC.png');
+            color: black;
+        }
+
+        .left-sidebar {
+            margin-top: 100px; /* Margen superior para colocarse debajo del header */
+        }
+    </style>
+    <form id="form1" runat="server">
+        <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+            data-sidebar-position="fixed" data-header-position="fixed">
+            <aside class="left-sidebar">
+                <!-- Sidebar scroll-->
+                <div>
+                    <div class="brand-logo d-flex align-items-center justify-content-between mt-5">
+                        <a href="./index.html" class="text-nowrap logo-img">
+                            <img src="../assets/img/breve.png" alt="" style="height: 70px;" />
+                            <img src="../assets/img/logobreve.ico" alt="" style="height: 50px;" />
+
+                        </a>
+                        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                            <i class="ti ti-x fs-8"></i>
+                        </div>
+                    </div>
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav scroll-sidebar  " data-simplebar="">
+                        <ul id="sidebarnav">
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+                                <span class="hide-menu ">PANEL DE ADMINISTRACION</span>
+
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="RegistrarProducto.aspx" aria-expanded="false">
+                                    <span>
+                                        <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+                                    </span>
+                                    <span class="hide-menu">Registrar Productos</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="registroCategoria.aspx
+                "
+                                    aria-expanded="false">
+                                    <span>
+                                        <iconify-icon icon="solar:danger-circle-bold-duotone" class="fs-6"></iconify-icon>
+                                    </span>
+                                    <span class="hide-menu">Registrar Categorias</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="ListarProductos.aspx" aria-expanded="false">
+                                    <span>
+                                        <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+                                    </span>
+                                    <span class="hide-menu">Listar Productos</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="RegistrarProveedor.aspx" aria-expanded="false">
+                                    <span>
+                                        <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
+                                    </span>
+                                    <span class="hide-menu">Registrar Proveedor</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="CerrarSesion.aspx" aria-expanded="false">
+                                    <span>
+                                        <iconify-icon icon="solar:logout-bold-duotone" class="fs-6"></iconify-icon>
+                                    </span>
+                                    <span class="hide-menu">Cerrar Sesión</span>
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </aside>
+
+            <div class="body-wrapper">
+                <header id="header" class="header d-flex align-items-center fixed-top" style="background-image: url('../assets/img/breveladrillosC.png'); color: black; font-size: 22px">
+                    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+                        <a href="index.html" class="logo d-flex align-items-center me-auto">
+                            <img src="../assets/img/breve.png" alt="" style="max-height: 100px; max-width: auto;">
+                            <img src="../assets/img/logobreve.png" alt="" style="max-height: 75px; max-width: auto;">
+                        </a>
+
+                        <!-- Menú de navegación -->
+                        <nav id="navmenu" class="navbar navbar-expand-xl navbar-light">
+                            <!-- Botón de hamburguesa -->
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <!-- Contenedor del menú (desplegable) -->
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <!-- Botón de cerrar (X) dentro del menú -->
+                                <button class="navbar-close-btn" type="button" aria-label="Cerrar Menú">
+                                    <span class="navbar-close-icon">&times;</span>
+                                    <!-- Icono de cerrar (X) -->
+                                </button>
+
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item"><a href="index." class="nav-link active" style="color: black;">Inicio</a></li>
+                                    <li class="nav-item"><a href="#about" class="nav-link" style="color: black;">Menú</a></li>
+                                    <li class="nav-item"><a href="#services" class="nav-link" style="color: black;">Quiénes somos</a></li>
+                                    <li class="nav-item"><a href="#portfolio" class="nav-link" style="color: black;">Ubicación</a></li>
+
+
+                                </ul>
+
+                            </div>
+                            <asp:Label ForeColor="#0099ff" ID="lblInicio" runat="server" Text=""></asp:Label>
+
+                        </nav>
+                    </div>
+                </header>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-area col-md-12">
+                                <asp:ContentPlaceHolder ID="ContentBody" runat="server"></asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <script>
+        // Seleccionar el botón de cerrar y el contenedor del menú
+        const closeButton = document.querySelector('.navbar-close-btn');
+        const navMenu = document.querySelector('.navbar-collapse');
+
+        // Añadir el evento de clic al botón de cerrar
+        closeButton.addEventListener('click', function () {
+            navMenu.classList.remove('show'); // Eliminar la clase 'show' para ocultar el menú
+        });
+    </script>
+
+    <script src="reg/libs/jquery/dist/jquery.min.js"></script>
+    <script src="reg/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="reg/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="reg/libs/simplebar/dist/simplebar.js"></script>
+    <script src="reg/js/sidebarmenu.js"></script>
+    <script src="reg/js/app.min.js"></script>
+    <script src="reg/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+</body>
+
+</html>
+
