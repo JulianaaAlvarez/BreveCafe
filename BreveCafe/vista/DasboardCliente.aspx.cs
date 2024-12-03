@@ -20,6 +20,7 @@ namespace AppBreveCafe.vista
                 RepeaterCategorias.DataBind();
                 Repeater1.DataSource = productosPorCategoria;
                 Repeater1.DataBind();
+
             }
         }
     }

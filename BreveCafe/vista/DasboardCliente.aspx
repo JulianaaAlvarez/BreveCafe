@@ -50,66 +50,7 @@
             bottom: 0;
         }
 
-        /* Estilo base para el menú */
-        ul.nav {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-items: center;
-            margin: 0;
-            padding: 10px 0;
-            list-style-type: none;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-            white-space: nowrap;
-            position: sticky;
-            top: 120px; /* Ajusta este valor según la altura del header */
-            z-index: 1500;
-        }
-
-        ul.nav li {
-            margin: 0 20px;
-            position: relative;
-        }
-
-        ul.nav li a {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background-color: #ffe8ce;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        ul.nav li a:hover {
-            background-color: #ffcccc;
-            transform: scale(1.05);
-        }
-
-        ul.nav li a.active {
-            background-color: #dc9f9f;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        ul.nav li a::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #d19191;
-            bottom: -5px;
-            left: 0;
-            transform: scaleX(0);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        ul.nav li a:hover::before {
-            transform: scaleX(1);
-        }
+       
 
         /* Nuevos estilos para las categorías y productos */
         .categoria {
@@ -186,23 +127,96 @@
         .nav li a.volver:hover {
             background-color: #f5c6cb; /* Color de fondo cuando se pasa el ratón */
         }
+        /* Contenedor del menú lateral */
+.sidebar-menu {
+    position: fixed;
+   top: 130px;
+    left: 0;
+    width: 250px;
+    height: 2000%;
+    background-color: #ffffff; /* Fondo oscuro */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+    flex-direction: column; /* Establece un flujo de columna */
+    justify-content: flex-start; /* Alinea los elementos hacia la parte superior */
+}
+
+/* Lista de navegación */
+.sidebar-menu .nav {
+    list-style: none; /* Elimina los puntos de las listas */
+    padding: 0;
+    margin: 0;
+    display: block; /* Cambiar de flex a block para que los elementos se apilen verticalmente */
+     gap: 150px; /* Añade un espacio entre los elementos */
+ margin-top: 50px; /* Coloca las categorías más abajo */
+}
+
+/* Cada item de la lista se apila verticalmente */
+.sidebar-menu .nav li {
+    display: block; /* Cada elemento ocupa una línea completa */
+    margin-bottom: 35px; /* Espacio entre los elementos */
+}
+
+/* Estilo de los enlaces dentro de los elementos de la lista */
+.sidebar-menu .nav li a {
+    display: block; /* Los enlaces ocupan toda la línea */
+    text-decoration: none;
+    color: #000; /* Texto claro */
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+     background-color: #fff;
+}
+
+/* Hover en los enlaces */
+.sidebar-menu .nav li a:hover {
+    background-color: #f2abb3; /* Color al pasar el mouse */
+}
+
+/* Botón Volver */
+.sidebar-menu .nav li a.volver {
+    background-color: #f2abb3; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+}
+
+.sidebar-menu .nav li a.volver:hover {
+    background-color: #f2abb3; /* Fondo más oscuro en hover */
+}
+
+/* Asegura que el contenido principal no se superponga */
+body {
+    margin-left: 220px; /* Ajusta según el ancho del menú */
+}
+
+
 
     </style>
 </asp:Content>
 
 <asp:Content ID="ContentBody" ContentPlaceHolderID="ContentBody" runat="server">
     <!-- Menú de navegación -->
-    <ul class="nav">
-        <asp:Repeater ID="Repeater1" runat="server">
-            <ItemTemplate>
-                <li class="scroll-to-section">
-                    <!-- Enlace que lleva a la categoría correspondiente -->
-                    <a href="#<%# Eval("Categoria") %>"><%# Eval("Categoria") %></a>
-                </li>
-            </ItemTemplate>
-        </asp:Repeater>
-        <li class="scroll-to-section"><a href="../index.aspx" class="volver">Volver</a></li>
-    </ul>
+   <div class="sidebar-menu">
+       <img style="max-height: 100px; max-width: auto;" src="imagenes/brevelogo.png" />
+       <br />
+       <br />
+        <h1 class="breadcrumb__text">Categorias</h1>
+        <ul class="nav">
+           
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <li class="scroll-to-section">
+                        <a href="#<%# Eval("Categoria") %>"><%# Eval("Categoria") %></a>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+            <li class="scroll-to-section">
+                <a href="../index.aspx" class="volver">Volver</a>
+            </li>
+        </ul>
+    </div>
 
     <br /><br /><br />
 
