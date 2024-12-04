@@ -45,6 +45,20 @@ namespace productoBreve.datos
             return exito;
         }
 
+        public DataTable ObtenerProductosPorCategoria(int idCategoria)
+        {
+            SqlConnection connection = conexion.MtdAbrirConexion();
+            SqlCommand cmd = new SqlCommand("spProductosPorCategoria", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable productos = new DataTable();
+            da.Fill(productos);
+            conexion.MtdCerrarConexion();
+            return productos;
+        }
+
+
         public DataTable ObtenerProductos()
         {
             SqlConnection connection = conexion.MtdAbrirConexion();
