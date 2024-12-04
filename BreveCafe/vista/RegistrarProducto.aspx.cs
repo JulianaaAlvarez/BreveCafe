@@ -19,6 +19,7 @@ namespace AppBreveCafe.vista
             if (!IsPostBack)
             {
                 CargarCategoria();
+                CargarCategoriasBusqueda();  // Método para cargar las categorías en el filtro de búsqueda
                 CargarProductos();
             }
         }
@@ -39,6 +40,61 @@ namespace AppBreveCafe.vista
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al cargar las categorias.');", true);
+            }
+        }
+
+        private void CargarCategoriasBusqueda()
+        {
+            List<ClCategoriaE> listarCategoria = registroProductoL.listarCategoria();
+            ddlBuscarCategoria.Items.Clear();
+            ddlBuscarCategoria.Items.Add(new ListItem("Mostrar todos", "")); // Agregar la opción "Mostrar todos"
+            if (listarCategoria != null && listarCategoria.Count > 0)
+            {
+                foreach (ClCategoriaE categoria in listarCategoria)
+                {
+                    ddlBuscarCategoria.Items.Add(new ListItem(categoria.categoria, categoria.idCategoria.ToString()));
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al cargar las categorías.');", true);
+            }
+        }
+
+        protected void ddlBuscarCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCategoriaSeleccionada;
+            if (int.TryParse(ddlBuscarCategoria.SelectedValue, out idCategoriaSeleccionada) && idCategoriaSeleccionada != 0)
+            {
+                CargarProductosPorCategoria(idCategoriaSeleccionada);
+            }
+            else
+            {
+                CargarProductos(); // Si selecciona "Mostrar todos", se cargan todos los productos
+            }
+        }
+
+        private void CargarProductosPorCategoria(int idCategoria)
+        {
+            DataTable productos = registroProductoL.ObtenerProductosPorCategoria(idCategoria);
+
+            if (productos != null && productos.Rows.Count > 0)
+            {
+                dtProducto.DataSource = productos;
+                dtProducto.DataBind();
+            }
+            else
+            {
+                productos.Rows.Add(productos.NewRow());
+                dtProducto.DataSource = productos;
+                dtProducto.DataBind();
+                dtProducto.Rows[0].Cells.Clear();
+                dtProducto.Rows[0].Cells.Add(new TableCell
+                {
+                    ColumnSpan = dtProducto.Columns.Count,
+                    Text = "No hay productos disponibles para esta categoría.",
+                    HorizontalAlign = HorizontalAlign.Center
+                });
             }
         }
 
@@ -130,7 +186,16 @@ namespace AppBreveCafe.vista
         protected void dtProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dtProducto.PageIndex = e.NewPageIndex;
-            CargarProductos();
+
+            int idCategoriaSeleccionada;
+            if (int.TryParse(ddlBuscarCategoria.SelectedValue, out idCategoriaSeleccionada) && idCategoriaSeleccionada != 0)
+            {
+                CargarProductosPorCategoria(idCategoriaSeleccionada); // Filtrar productos por la categoría seleccionada
+            }
+            else
+            {
+                CargarProductos(); // Si no se ha seleccionado una categoría, mostrar todos los productos
+            }
         }
 
         // Cargar productos con paginación
@@ -161,7 +226,6 @@ namespace AppBreveCafe.vista
         // Evento de RowCommand (Editar/Eliminar)
         protected void dtProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            // Intentar convertir el CommandArgument a un entero
             int idProducto;
             if (int.TryParse(e.CommandArgument.ToString(), out idProducto))
             {
@@ -176,10 +240,8 @@ namespace AppBreveCafe.vista
             }
             else
             {
-                // Si no es un número válido, mostrar un mensaje de error
                 lblCatch.Text = "El ID del producto no es válido.";
             }
         }
-
     }
 }

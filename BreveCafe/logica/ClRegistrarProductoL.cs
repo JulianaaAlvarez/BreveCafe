@@ -38,5 +38,11 @@ namespace productoBreve.logica
         {
             throw new NotImplementedException();
         }
+        public DataTable ObtenerProductosPorCategoria(int idCategoria)
+        {
+            return registro.ObtenerProductosPorCategoria(idCategoria);
+        }
+
+
     }
 }
