@@ -292,7 +292,7 @@ Además del café Fante, ofrecemos una variedad de opciones gourmet, elaboradas 
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="https://www.instagram.com/brevecafeco/profilecard/?igsh=c3VrOWxsN2VnMWg1"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                     </div>
                 </div>
@@ -303,9 +303,9 @@ Además del café Fante, ofrecemos una variedad de opciones gourmet, elaboradas 
                 </div>
                 <div class="col-lg-4 col-xs-12">
                     <div class="left-text-content">
-                        <p>© Copyright Klassy Cafe Co.
+                        <p>© Copyright BreveCafe.
                         
-                        <br>Design: TemplateMo</p>
+                        <br>Design: BreveCafe</p>
                     </div>
                 </div>
             </div>

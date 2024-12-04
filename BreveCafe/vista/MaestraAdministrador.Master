@@ -107,7 +107,7 @@
                 <!-- Sidebar scroll-->
                 <div>
                     <div class="brand-logo d-flex align-items-center justify-content-between mt-5">
-                        <a href="./index.html" class="text-nowrap logo-img">
+                        <a href="CerrarSesion.aspx" class="text-nowrap logo-img">
                             <img src="../assets/img/breve.png" alt="" style="height: 70px;" />
                             <img src="../assets/img/logobreve.ico" alt="" style="height: 50px;" />
 
@@ -181,7 +181,7 @@
                 <header id="header" class="header d-flex align-items-center fixed-top" style="background-image: url('../assets/img/breveladrillosC.png'); color: black; font-size: 22px">
                     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-                        <a href="index.html" class="logo d-flex align-items-center me-auto">
+                        <a href="CerrarSesion.aspx" class="logo d-flex align-items-center me-auto">
                             <img src="../assets/img/breve.png" alt="" style="max-height: 100px; max-width: auto;">
                             <img src="../assets/img/logobreve.png" alt="" style="max-height: 75px; max-width: auto;">
                         </a>
@@ -201,14 +201,7 @@
                                     <!-- Icono de cerrar (X) -->
                                 </button>
 
-                                <ul class="navbar-nav ms-auto">
-                                    <li class="nav-item"><a href="index.aspx" class="nav-link active" style="color: black;">Inicio</a></li>
-                                    <li class="nav-item"><a href="DasboardCliente.aspx" class="nav-link" style="color: black;">Menú</a></li>
-                                    <li class="nav-item"><a href="../index.aspx" class="nav-link" style="color: black;">Quiénes somos</a></li>
-                                    <li class="nav-item"><a href="../ubicacion.aspx" class="nav-link" style="color: black;">Ubicación</a></li>
-                                    
-
-                                </ul>
+                             
 
                             </div>
                             <asp:Label ForeColor="#0099ff" ID="lblInicio" runat="server" Text=""></asp:Label>
