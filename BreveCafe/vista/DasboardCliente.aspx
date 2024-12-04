@@ -3,6 +3,7 @@
 <asp:Content ID="Contenthead" ContentPlaceHolderID="Contenthead" runat="server">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Estilos generales existentes */
         .card-title {
             font-size: 1.5rem;
             font-weight: bold;
@@ -14,45 +15,78 @@
             color: #555;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-            background-color: #6c757d;
-            padding: 1rem;
-            text-align: center;
-            margin: 2rem 0;
+        .sidebar-menu {
+            position: fixed;
+            top: 130px;
+            left: -250px; /* Ocultar la barra lateral por defecto */
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: left 0.3s ease-in-out; /* Transición para abrir/cerrar */
         }
 
-        .menu-section {
-            margin-bottom: 4rem;
+        .sidebar-menu.open-sidebar {
+            left: 0; /* Mostrar la barra lateral */
         }
 
-        .card img {
-            height: 200px;
-            object-fit: cover;
+        .sidebar-menu .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block; /* Usamos bloque para apilar los elementos verticalmente */
         }
 
-        .breadcrumb__text h2 {
-            font-size: 35px;
+        .sidebar-menu .nav li {
+            margin-bottom: 15px; /* Reduce el espacio entre los elementos */
+        }
+
+        .sidebar-menu .nav li a {
+            text-decoration: none;
             color: #000;
-            font-weight: 700;
-            font-family: "Playfair Display", serif;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            display: block;
         }
 
-        .breadcrumb__text {
-            position: relative;
+        .sidebar-menu .nav li a:hover {
+            background-color: #f2abb3;
         }
 
-        .breadcrumb__text::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
+        .sidebar-menu .nav li a.volver {
+            background-color: #f2abb3;
+            color: #fff;
         }
 
-       
+        .sidebar-menu .nav li a.volver:hover {
+            background-color: #f2abb3;
+        }
 
-        /* Nuevos estilos para las categorías y productos */
+        /* Botón para abrir/cerrar la barra lateral */
+        .toggle-sidebar-btn {
+            position: fixed;
+            top: 130px;
+            left: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1100;
+            font-size: 16px;
+        }
+
+        .toggle-sidebar-btn:focus {
+            outline: none;
+        }
+
+        /* Estilos de las Cards (sin cambios) */
         .categoria {
             margin-bottom: 3rem;
         }
@@ -75,12 +109,12 @@
         .producto-card {
             width: 250px;
             background-color: #fff;
-            border: 2px solid #ddd; /* Borde gris claro */
+            border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 1rem;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efectos de transición */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .producto-imagen {
@@ -88,7 +122,7 @@
             height: 150px;
             object-fit: cover;
             margin-bottom: 1rem;
-            transition: transform 0.3s ease; /* Transición suave para la imagen */
+            transition: transform 0.3s ease;
         }
 
         .producto-card h3 {
@@ -107,104 +141,28 @@
             color: #28a745;
         }
 
-        /* Efecto de ampliación y sombra al pasar el cursor sobre la tarjeta */
         .producto-card:hover {
-            transform: scale(1.05); /* Ampliación de la tarjeta */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .producto-card:hover .producto-imagen {
-            transform: scale(1.1); /* Ampliar la imagen dentro de la tarjeta */
+            transform: scale(1.1);
         }
-
-        /* Estilo específico para el botón 'Volver' */
-        .nav li a.volver {
-            background-color: #ffecb3; /* Color de fondo suave */
-            color: #d9534f; /* Color del texto */
-            font-weight: bold;
-        }
-
-        .nav li a.volver:hover {
-            background-color: #f5c6cb; /* Color de fondo cuando se pasa el ratón */
-        }
-        /* Contenedor del menú lateral */
-.sidebar-menu {
-    position: fixed;
-   top: 130px;
-    left: 0;
-    width: 250px;
-    height: 2000%;
-    background-color: #ffffff; /* Fondo oscuro */
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    z-index: 1000;
-    flex-direction: column; /* Establece un flujo de columna */
-    justify-content: flex-start; /* Alinea los elementos hacia la parte superior */
-}
-
-/* Lista de navegación */
-.sidebar-menu .nav {
-    list-style: none; /* Elimina los puntos de las listas */
-    padding: 0;
-    margin: 0;
-    display: block; /* Cambiar de flex a block para que los elementos se apilen verticalmente */
-     gap: 150px; /* Añade un espacio entre los elementos */
- margin-top: 50px; /* Coloca las categorías más abajo */
-}
-
-/* Cada item de la lista se apila verticalmente */
-.sidebar-menu .nav li {
-    display: block; /* Cada elemento ocupa una línea completa */
-    margin-bottom: 35px; /* Espacio entre los elementos */
-}
-
-/* Estilo de los enlaces dentro de los elementos de la lista */
-.sidebar-menu .nav li a {
-    display: block; /* Los enlaces ocupan toda la línea */
-    text-decoration: none;
-    color: #000; /* Texto claro */
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-     background-color: #fff;
-}
-
-/* Hover en los enlaces */
-.sidebar-menu .nav li a:hover {
-    background-color: #f2abb3; /* Color al pasar el mouse */
-}
-
-/* Botón Volver */
-.sidebar-menu .nav li a.volver {
-    background-color: #f2abb3; /* Fondo rojo */
-    color: #fff; /* Texto blanco */
-}
-
-.sidebar-menu .nav li a.volver:hover {
-    background-color: #f2abb3; /* Fondo más oscuro en hover */
-}
-
-/* Asegura que el contenido principal no se superponga */
-body {
-    margin-left: 220px; /* Ajusta según el ancho del menú */
-}
-
-
-
     </style>
 </asp:Content>
 
 <asp:Content ID="ContentBody" ContentPlaceHolderID="ContentBody" runat="server">
+    <!-- Botón para abrir/cerrar la barra lateral -->
+    <button class="toggle-sidebar-btn" type="button" onclick="toggleSidebarVisibility()">☰</button>
+
     <!-- Menú de navegación -->
-   <div class="sidebar-menu">
-       <img style="max-height: 100px; max-width: auto;" src="imagenes/brevelogo.png" />
-       <br />
-       <br />
-        <h1 class="breadcrumb__text">Categorias</h1>
+    <div class="sidebar-menu" id="sidebarMenu">
+        <img style="max-height: 100px; max-width: auto;" src="imagenes/brevelogo.png" />
+        <br />
+        <br />
+        <h1 class="breadcrumb__text">Categorías</h1>
         <ul class="nav">
-           
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <li class="scroll-to-section">
@@ -213,7 +171,7 @@ body {
                 </ItemTemplate>
             </asp:Repeater>
             <li class="scroll-to-section">
-                <a href="../index.aspx" class="volver">Volver</a>
+                <a href="../index.aspx" class="volver">Volver al Inicio</a>
             </li>
         </ul>
     </div>
@@ -224,7 +182,6 @@ body {
     <asp:Repeater ID="RepeaterCategorias" runat="server">
         <ItemTemplate>
             <div class="categoria breadcrumb__text">
-                <!-- Asignamos un id único a cada categoría -->
                 <h2 id="<%# Eval("Categoria") %>"><%# Eval("Categoria") %></h2>
                 <div class="productos-container">
                     <asp:Repeater ID="RepeaterProductos" runat="server" DataSource='<%# Eval("Productos") %>'>
@@ -243,7 +200,10 @@ body {
     </asp:Repeater>
 
     <script>
-        document.documentElement.style.scrollBehavior = "smooth"; // Desplazamiento suave
+        // Función para abrir/cerrar la barra lateral
+        function toggleSidebarVisibility() {
+            const sidebar = document.getElementById('sidebarMenu');
+            sidebar.classList.toggle('open-sidebar'); // Alternar clase "open-sidebar"
+        }
     </script>
-
 </asp:Content>
