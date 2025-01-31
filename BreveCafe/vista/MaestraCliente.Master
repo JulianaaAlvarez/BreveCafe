@@ -125,6 +125,7 @@
                                 <li class="nav-item"><a href="DasboardCliente.aspx" class="nav-link" style="color: black;">Menú</a></li>
                                 <li class="nav-item"><a href="#services" class="nav-link" style="color: black;">Quiénes somos</a></li>
                                 <li class="nav-item"><a href="../ubicacion.aspx" class="nav-link" style="color: black;">Ubicación</a></li>
+                                <li class="nav-item"><a href="Pedidos.aspx" class="nav-link" style="color: black;">carrito</a></li>
                                 <li id="liSesion" runat="server" class="nav-item">
                                     <a href="../login.aspx" class="nav-link" style="color: deepskyblue;">Iniciar sesión</a>
                                 </li>

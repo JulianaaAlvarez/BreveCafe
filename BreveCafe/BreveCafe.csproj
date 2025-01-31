@@ -540,6 +540,7 @@
     <Content Include="vista\imagenes\bote-de-basura.png" />
     <Content Include="vista\imagenes\papelera.png" />
     <Content Include="vista\imagenes\waste_bin_delete_remove_recycle_icon_123840.png" />
+    <Content Include="vista\Pedidos.aspx" />
     <Content Include="vista\RegistrarProveedor.aspx" />
     <Content Include="vista\registroCategoria.aspx" />
     <Content Include="vista\RegistrarProducto.aspx" />
@@ -561,15 +562,18 @@
     <Compile Include="CafeEspecialidad.aspx.designer.cs">
       <DependentUpon>CafeEspecialidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="datos\ClCarritoD.cs" />
     <Compile Include="datos\ClMenuD.cs" />
     <Compile Include="datos\ClRegistrarProveedorD.cs" />
     <Compile Include="datos\ClRegistroCategoriaD.cs" />
     <Compile Include="entidades\ClCategoriaE.cs" />
     <Compile Include="entidades\ClMenuE.cs" />
+    <Compile Include="entidades\ClCarritoE.cs" />
     <Compile Include="entidades\ClRegistrarProveedorE.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="logica\ClCarritoL.cs" />
     <Compile Include="logica\ClMenuL.cs" />
     <Compile Include="logica\ClRegistrarCategoriaL.cs" />
     <Compile Include="logica\ClRegistrarProveedorL.cs" />
@@ -625,6 +629,13 @@
     </Compile>
     <Compile Include="vista\editarCategoria.aspx.designer.cs">
       <DependentUpon>editarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="vista\RegistrarProveedor.aspx.cs">
       <DependentUpon>RegistrarProveedor.aspx</DependentUpon>

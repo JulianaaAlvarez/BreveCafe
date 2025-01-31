@@ -46,6 +46,43 @@ namespace BreveCafe.datos
             return productos;
         }
 
+        // Método para obtener un producto por su id (CORREGIDO)
+        public ClMenuE ObtenerProductoPorId(int idProducto)
+        {
+            ClMenuE producto = null;
+            SqlConnection connection = conexion.MtdAbrirConexion();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT p.*, c.categoria FROM producto p INNER JOIN categoria c ON p.idCategoria = c.idCategoria WHERE p.idProducto = @idProducto", connection))
+                {
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            producto = new ClMenuE
+                            {
+                                idProducto = reader.GetInt32(reader.GetOrdinal("idProducto")),
+                                nombre = reader.GetString(reader.GetOrdinal("nombre")),
+                                descripcion = reader.GetString(reader.GetOrdinal("descripcion")),
+                                precio = reader.GetDecimal(reader.GetOrdinal("precio")),
+                                imagen = reader.GetString(reader.GetOrdinal("imagen")),
+                                idCategoria = reader.GetInt32(reader.GetOrdinal("idCategoria")),
+                                categoria = reader.GetString(reader.GetOrdinal("categoria"))
+                            };
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+            }
+            return producto;
+        }
+
         // Nuevo método para listar las categorías
         public List<string> mtdListarCategorias()
         {
@@ -76,3 +113,4 @@ namespace BreveCafe.datos
         }
     }
 }
+
