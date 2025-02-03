@@ -22,17 +22,27 @@
         <div class="container mt-5">
             <h1 class="text-center">Carrito de Compras</h1>
 
-            <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowCommand="gvCarrito_RowCommand">
+            <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowCommand="gvCarrito_RowCommand" OnRowDataBound="gvCarrito_RowDataBound">
                 <Columns>
                     <asp:BoundField DataField="nombre" HeaderText="Producto" SortExpression="nombre" />
                     <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio" DataFormatString="{0:C}" />
-                    <asp:BoundField DataField="cantidad" HeaderText="Cantidad" SortExpression="cantidad" />
+                    <asp:TemplateField HeaderText="Cantidad">
+                        <ItemTemplate>
+                            <asp:Button ID="btnMenos" runat="server" Text="-" CommandName="Menos" CommandArgument='<%# Eval("idProducto") %>' CssClass="btn btn-secondary btn-sm" />
+                            <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("cantidad") %>' CssClass="mx-2"></asp:Label>
+                            <asp:Button ID="btnMas" runat="server" Text="+" CommandName="Mas" CommandArgument='<%# Eval("idProducto") %>' CssClass="btn btn-secondary btn-sm" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Mesa">
+                        <ItemTemplate>
+                            <asp:DropDownList ID="ddlMesa" runat="server" CssClass="form-control">
+
+                            </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" 
-                                CommandName="Eliminar" 
-                                CommandArgument='<%# Eval("idProducto") %>'
-                                CssClass="btn btn-danger btn-sm" />
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("idProducto") %>' CssClass="btn btn-danger btn-sm" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -50,7 +60,6 @@
             <div class="text-center mt-3">
                 <button type="button" class="btn btn-primary" onclick="location.href='DasboardCliente.aspx'">Volver</button>
             </div>
-
         </div>
     </form>
 </body>

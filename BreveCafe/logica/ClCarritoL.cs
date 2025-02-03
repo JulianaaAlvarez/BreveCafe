@@ -1,6 +1,7 @@
 ﻿using BreveCafe.datos;
 using BreveCafe.entidades;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BreveCafe.logica
 {
@@ -47,6 +48,33 @@ namespace BreveCafe.logica
                 _repository.EliminarProductoDelCarrito(carrito.idCarrito, idProducto);
             }
         }
+
+        public void AjustarCantidadProducto(int idUsuario, int idProducto, int cantidad)
+        {
+            var carrito = _repository.ObtenerCarritoPorUsuario(idUsuario);
+
+            if (carrito != null)
+            {
+                var producto = _repository.ObtenerProductosDelCarrito(carrito.idCarrito)
+                    .FirstOrDefault(p => p.idProducto == idProducto);
+
+                if (producto != null)
+                {
+                    producto.cantidad += cantidad;
+
+                    if (producto.cantidad < 1)
+                    {
+                        producto.cantidad = 1;
+                    }
+
+                    _repository.ActualizarCantidadProducto(carrito.idCarrito, idProducto, producto.cantidad);
+                }
+            }
+        }
+
+        public List<string> ObtenerMesas()
+        {
+            return _repository.ObtenerMesas();
+        }
     }
 }
-

@@ -143,11 +143,11 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="ListarProductos.aspx" aria-expanded="false">
+                                <a class="sidebar-link" href="VerPedidos.aspx" aria-expanded="false">
                                     <span>
                                         <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone" class="fs-6"></iconify-icon>
                                     </span>
-                                    <span class="hide-menu">Listar Productos</span>
+                                    <span class="hide-menu">Visualizar Pedidos</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">

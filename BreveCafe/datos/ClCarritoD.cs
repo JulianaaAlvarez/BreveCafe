@@ -153,6 +153,54 @@ namespace BreveCafe.datos
                 conexion.MtdCerrarConexion();
             }
         }
+
+        public void ActualizarCantidadProducto(int idCarrito, int idProducto, int cantidad)
+        {
+            SqlConnection connection = conexion.MtdAbrirConexion();
+
+            try
+            {
+                string query = "UPDATE pedidoProducto SET cantidad = @cantidad WHERE idCarrito = @idCarrito AND idProducto = @idProducto";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@cantidad", cantidad);
+                    command.Parameters.AddWithValue("@idCarrito", idCarrito);
+                    command.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+            }
+        }
+
+        public List<string> ObtenerMesas()
+        {
+            List<string> mesas = new List<string>();
+            SqlConnection connection = conexion.MtdAbrirConexion();
+
+            try
+            {
+                string query = "SELECT numeroMesa FROM mesa"; // Ajusta la consulta según tu base de datos
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            mesas.Add(reader["numeroMesa"].ToString());
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+            }
+
+            return mesas;
+        }
     }
 }
-
