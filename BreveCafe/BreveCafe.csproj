@@ -545,7 +545,7 @@
     <Content Include="vista\registroCategoria.aspx" />
     <Content Include="vista\RegistrarProducto.aspx" />
     <Content Include="vista\EditarProductos.aspx" />
-    <Content Include="vista\ListarProductos.aspx" />
+    <Content Include="vista\VerPedidos.aspx" />
     <Content Include="vista\imagenes\breve instagram.png" />
     <Content Include="vista\imagenes\breve nombre.png" />
     <Content Include="vista\imagenes\breveladrillosC.png" />
@@ -665,12 +665,12 @@
     <Compile Include="vista\EditarProductos.aspx.designer.cs">
       <DependentUpon>EditarProductos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="vista\ListarProductos.aspx.cs">
-      <DependentUpon>ListarProductos.aspx</DependentUpon>
+    <Compile Include="vista\VerPedidos.aspx.cs">
+      <DependentUpon>VerPedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="vista\ListarProductos.aspx.designer.cs">
-      <DependentUpon>ListarProductos.aspx</DependentUpon>
+    <Compile Include="vista\VerPedidos.aspx.designer.cs">
+      <DependentUpon>VerPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="vista\MaestraAdministrador.Master.cs">
       <DependentUpon>MaestraAdministrador.Master</DependentUpon>
