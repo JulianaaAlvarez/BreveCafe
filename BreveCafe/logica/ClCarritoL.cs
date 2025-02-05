@@ -76,5 +76,15 @@ namespace BreveCafe.logica
         {
             return _repository.ObtenerMesas();
         }
+
+        public void ProcesarCarrito(int idUsuario)
+        {
+            var carrito = _repository.ObtenerCarritoPorUsuario(idUsuario);
+            if (carrito != null)
+            {
+                _repository.MarcarCarritoComoProcesado(carrito.idCarrito);
+                _repository.CrearNuevoCarritoParaUsuario(idUsuario);
+            }
+        }
     }
 }

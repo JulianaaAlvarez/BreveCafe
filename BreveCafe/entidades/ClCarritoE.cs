@@ -8,6 +8,7 @@ namespace BreveCafe.entidades
         public int idCarrito { get; set; }
         public DateTime fechaCreacion { get; set; }
         public int idUsuario { get; set; }
+        public string estado { get; set; }  // Agregamos esta propiedad
         public ICollection<PedidoProducto> PedidoProductos { get; set; }
     }
 
@@ -22,4 +23,3 @@ namespace BreveCafe.entidades
         public string nombre { get; set; }
     }
 }
-

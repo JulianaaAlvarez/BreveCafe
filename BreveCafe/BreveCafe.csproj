@@ -679,21 +679,27 @@
     <Compile Include="CafeEspecialidad.aspx.designer.cs">
       <DependentUpon>CafeEspecialidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="datos\ClVerPedidoD.cs" />
     <Compile Include="datos\ClCarritoD.cs" />
     <Compile Include="datos\ClMenuD.cs" />
+    <Compile Include="datos\ClPedidoD.cs" />
     <Compile Include="datos\ClRegistrarProveedorD.cs" />
     <Compile Include="datos\ClRegistroCategoriaD.cs" />
     <Compile Include="entidades\ClCategoriaE.cs" />
     <Compile Include="entidades\ClMenuE.cs" />
     <Compile Include="entidades\ClCarritoE.cs" />
+    <Compile Include="entidades\ClPedidoE.cs" />
     <Compile Include="entidades\ClRegistrarProveedorE.cs" />
+    <Compile Include="entidades\ClVerPedidoE.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="logica\ClCarritoL.cs" />
     <Compile Include="logica\ClMenuL.cs" />
+    <Compile Include="logica\ClPedidoL.cs" />
     <Compile Include="logica\ClRegistrarCategoriaL.cs" />
     <Compile Include="logica\ClRegistrarProveedorL.cs" />
+    <Compile Include="logica\ClVerPedidoL.cs" />
     <Compile Include="ubicacion.aspx.cs">
       <DependentUpon>ubicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

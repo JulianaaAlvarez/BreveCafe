@@ -91,7 +91,7 @@ namespace BreveCafe.datos
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand("spCategorias", connection)) // Asumiendo que existe un procedimiento almacenado spCategorias
+                using (SqlCommand cmd = new SqlCommand("spCategorias", connection)) 
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 

@@ -3,12 +3,14 @@ using BreveCafe.entidades;
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Linq;
 
 namespace BreveCafe.vista
 {
     public partial class Pedidos : System.Web.UI.Page
     {
         private ClCarritoL carritoService = new ClCarritoL();
+        private ClPedidoL pedidoService = new ClPedidoL();
         private int idUsuario = 1; // Asegúrate de obtener el ID de usuario de la sesión
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,11 +31,7 @@ namespace BreveCafe.vista
                 gvCarrito.DataSource = productosDelCarrito;
                 gvCarrito.DataBind();
 
-                decimal total = 0;
-                foreach (var producto in productosDelCarrito)
-                {
-                    total += producto.cantidad * producto.precio;
-                }
+                decimal total = productosDelCarrito.Sum(p => p.cantidad * p.precio);
                 lblTotal.Text = total.ToString("0.00");
             }
         }
@@ -46,11 +44,10 @@ namespace BreveCafe.vista
                 if (ddlMesa != null)
                 {
                     var mesas = carritoService.ObtenerMesas();
-                    ddlMesa.DataSource = mesas;
+                    ddlMesa.DataSource = mesas.Select(m => new { Text = m, Value = m });
+                    ddlMesa.DataTextField = "Text";
+                    ddlMesa.DataValueField = "Value";
                     ddlMesa.DataBind();
-
-                    // Aquí podrías establecer un valor seleccionado si es necesario
-                    // Ejemplo: ddlMesa.SelectedValue = producto.MesaId; si tienes el ID de la mesa asociada
                 }
             }
         }
@@ -75,9 +72,69 @@ namespace BreveCafe.vista
             CargarCarrito();
         }
 
-        protected void btnProcederPago_Click(object sender, EventArgs e)
+        protected void btnConfirmarCompra_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Pago.aspx");
+            try
+            {
+                string metodoPago = hdnMetodoPago.Value;
+                int idMesa = ObtenerMesaSeleccionada();
+
+                // Validar que se haya seleccionado una mesa
+                if (idMesa <= 0)
+                {
+                    MostrarMensaje("Por favor, seleccione una mesa.");
+                    return;
+                }
+
+                // Validar que se haya seleccionado un método de pago
+                if (string.IsNullOrEmpty(metodoPago))
+                {
+                    MostrarMensaje("Por favor, seleccione un método de pago.");
+                    return;
+                }
+
+                int idPedido = pedidoService.CrearPedido(idUsuario, idMesa, metodoPago);
+
+                if (idPedido > 0)
+                {
+                    MostrarMensaje("Pedido confirmado. ¡Gracias por su compra!");
+                    Response.Redirect("DasboardCliente.aspx");
+                }
+                else
+                {
+                    MostrarMensaje("Hubo un error al procesar su pedido. Por favor, intente nuevamente.");
+                }
+            }
+            catch // Removemos el parámetro 'ex' ya que no lo estamos usando
+            {
+                MostrarMensaje("Hubo un error al procesar su pedido. Por favor, intente nuevamente.");
+            }
+        }
+
+        private int ObtenerMesaSeleccionada()
+        {
+            try
+            {
+                if (gvCarrito.Rows.Count > 0)
+                {
+                    DropDownList ddlMesa = (DropDownList)gvCarrito.Rows[0].FindControl("ddlMesa");
+                    if (ddlMesa != null && !string.IsNullOrEmpty(ddlMesa.SelectedValue))
+                    {
+                        return Convert.ToInt32(ddlMesa.SelectedValue);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Si hay algún error en la conversión o al obtener el valor
+            }
+            return 0;
+        }
+
+        private void MostrarMensaje(string mensaje)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert",
+                $"alert('{mensaje.Replace("'", "\\'")}');", true);
         }
     }
 }

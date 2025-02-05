@@ -16,7 +16,7 @@ namespace BreveCafe.datos
 
             try
             {
-                string query = "SELECT * FROM carro WHERE idUsuario = @idUsuario";
+                string query = "SELECT idCarrito, fechaCreacion, idUsuario FROM carro WHERE idUsuario = @idUsuario";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@idUsuario", idUsuario);
@@ -29,7 +29,8 @@ namespace BreveCafe.datos
                             {
                                 idCarrito = (int)reader["idCarrito"],
                                 fechaCreacion = (DateTime)reader["fechaCreacion"],
-                                idUsuario = (int)reader["idUsuario"]
+                                idUsuario = (int)reader["idUsuario"],
+                                estado = "Activo" // Valor por defecto
                             };
                         }
                     }
@@ -183,7 +184,7 @@ namespace BreveCafe.datos
 
             try
             {
-                string query = "SELECT numeroMesa FROM mesa"; // Ajusta la consulta según tu base de datos
+                string query = "SELECT numeroMesa FROM mesa";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -201,6 +202,45 @@ namespace BreveCafe.datos
             }
 
             return mesas;
+        }
+
+        public void MarcarCarritoComoProcesado(int idCarrito)
+        {
+            SqlConnection connection = conexion.MtdAbrirConexion();
+
+            try
+            {
+                string query = "UPDATE carro SET estado = 'Procesado' WHERE idCarrito = @idCarrito";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idCarrito", idCarrito);
+                    command.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+            }
+        }
+
+        public void CrearNuevoCarritoParaUsuario(int idUsuario)
+        {
+            SqlConnection connection = conexion.MtdAbrirConexion();
+
+            try
+            {
+                string query = "INSERT INTO carro (fechaCreacion, idUsuario, estado) VALUES (@fechaCreacion, @idUsuario, 'Activo')";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fechaCreacion", DateTime.Now);
+                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    command.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+            }
         }
     }
 }

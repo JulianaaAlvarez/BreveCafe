@@ -1,31 +1,46 @@
-﻿using productoBreve.entidades;
-using productoBreve.logica;
+﻿using BreveCafe.logica;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace BreveCafe.vista
 {
-    public partial class Formulario_web1 : System.Web.UI.Page
+    public partial class VerPedidos : Page
     {
+        private ClVerPedidoL pedidoL = new ClVerPedidoL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //cargarProductos();
+                CargarPedidos();
             }
-            
-
         }
-        //private void cargarProductos()
-        //{
-        //    ClRegistrarProductoL logica = new ClRegistrarProductoL();
-        //    List<ClRegistrarProductoE> productos = logica.ListarProductos();
-        //    repeaterProductos.DataSource = productos;
-        //    repeaterProductos.DataBind();
-        //}
+
+        private void CargarPedidos(int? mesaNumero = null)
+        {
+            DataTable dt = pedidoL.obtenerPedidos(mesaNumero);
+            gvPedidos.DataSource = dt;
+            gvPedidos.DataBind();
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            int mesaNumero;
+            if (int.TryParse(txtMesa.Text.Trim(), out mesaNumero))
+            {
+                CargarPedidos(mesaNumero);
+            }
+            else
+            {
+                CargarPedidos(); 
+            }
+        }
+
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
+        {
+            txtMesa.Text = ""; 
+            CargarPedidos(); 
+        }
     }
 }
