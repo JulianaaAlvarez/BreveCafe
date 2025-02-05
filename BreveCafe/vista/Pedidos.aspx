@@ -48,7 +48,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mesa">
                         <ItemTemplate>
-                            <asp:DropDownList ID="ddlMesa" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlMesa" runat="server" CssClass="form-control">
+                            </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones">
@@ -64,74 +65,68 @@
             </div>
 
             <div class="text-center mt-3">
-                <!-- Botón para abrir el modal -->
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#pagoModal">
                     Proceder a Pago
                 </button>
             </div>
 
-            <!-- Botón Volver -->
             <div class="text-center mt-3">
                 <button type="button" class="btn btn-primary" onclick="location.href='DasboardCliente.aspx'">Volver</button>
             </div>
         </div>
-    </form>
 
-    <!-- MODAL DE PAGO -->
-    <div class="modal fade" id="pagoModal" tabindex="-1" role="dialog" aria-labelledby="pagoModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pagoModalLabel">Seleccione su método de pago</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <p>¿Cómo desea realizar el pago?</p>
-                    <button type="button" class="btn btn-primary" onclick="mostrarImagen('nequi')">Pagar por Nequi</button>
-                    <button type="button" class="btn btn-secondary" onclick="mostrarImagen('caja')">Pagar en Caja</button>
-                    
-                    <img id="imagenPago" src="" alt="Método de pago">
-                    
-                    <h4 id="codigoFijo">Número: 3502359358</h4>
+        <!-- MODAL DE PAGO -->
+        <div class="modal fade" id="pagoModal" tabindex="-1" role="dialog" aria-labelledby="pagoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pagoModalLabel">Seleccione su método de pago</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>¿Cómo desea realizar el pago?</p>
+                        <button type="button" class="btn btn-primary" onclick="mostrarImagen('nequi')">Pagar por Nequi</button>
+                        <button type="button" class="btn btn-secondary" onclick="mostrarImagen('caja')">Pagar en Caja</button>
+                        
+                        <img id="imagenPago" src="/placeholder.svg" alt="Método de pago">
+                        
+                        <h4 id="codigoFijo">Número: 3502359358</h4>
+                        <p id="mensajeEvidencia">Mostrar evidencia en caja</p>
 
-                    <p id="mensajeEvidencia">Mostrar evidencia en caja</p>
+                        <asp:HiddenField ID="hdnMetodoPago" runat="server" />
 
                         <div class="d-flex justify-content-center mt-3">
-                            <button id="btnConfirmar" class="btn btn-success" onclick="confirmarCompra()">Confirmar Compra</button>
+                            <asp:Button ID="btnConfirmarCompra" runat="server" Text="Confirmar Compra" CssClass="btn btn-success" OnClick="btnConfirmarCompra_Click" />
                         </div>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <script>
         function mostrarImagen(metodo) {
             var imagen = document.getElementById("imagenPago");
             var codigoFijo = document.getElementById("codigoFijo");
             var mensajeEvidencia = document.getElementById("mensajeEvidencia");
-            var btnConfirmar = document.getElementById("btnConfirmar");
+            var hdnMetodoPago = document.getElementById('<%= hdnMetodoPago.ClientID %>');
 
             if (metodo === "nequi") {
-                imagen.src = "../assets/img/nequi.jpeg"; // Cambia esto por la ruta de la imagen de Nequi
+                imagen.src = "../assets/img/nequi.jpeg";
                 codigoFijo.style.display = "block";
                 mensajeEvidencia.style.display = "block";
             } else if (metodo === "caja") {
-                imagen.src = "../assets/img/caja.jpg"; // Cambia esto por la ruta de la imagen de pago en caja
+                imagen.src = "../assets/img/caja.jpg";
                 codigoFijo.style.display = "none";
                 mensajeEvidencia.style.display = "none";
             }
 
             imagen.style.display = "block";
-            btnConfirmar.style.display = "block";
-        }
-
-        function confirmarCompra() {
-            alert("Compra confirmada. ¡Gracias por su pedido!");
-            $("#pagoModal").modal("hide");
+            hdnMetodoPago.value = metodo;
         }
     </script>
 </body>
 </html>
+
