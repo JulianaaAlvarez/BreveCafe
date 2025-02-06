@@ -30,5 +30,21 @@ namespace BreveCafe.datos
             }
             return dt;
         }
+
+        public bool ActualizarEstadoPedido(int idPedido, string nuevoEstado)
+        {
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("ActualizarEstadoPedido", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@idPedido", idPedido);
+                cmd.Parameters.AddWithValue("@nuevoEstado", nuevoEstado);
+
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
+        }
+
     }
 }

@@ -653,6 +653,7 @@
     <Content Include="vista\css\styleDash.css" />
     <Content Include="vista\DasboardCliente.aspx" />
     <Content Include="vista\editarCategoria.aspx" />
+    <Content Include="vista\pedidosEntregados.aspx" />
     <Content Include="vista\imagenes\boligrafo.png" />
     <Content Include="vista\imagenes\bote-de-basura.png" />
     <Content Include="vista\imagenes\papelera.png" />
@@ -679,6 +680,7 @@
     <Compile Include="CafeEspecialidad.aspx.designer.cs">
       <DependentUpon>CafeEspecialidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="datos\ClPedidoEntregadoD.cs" />
     <Compile Include="datos\ClVerPedidoD.cs" />
     <Compile Include="datos\ClCarritoD.cs" />
     <Compile Include="datos\ClMenuD.cs" />
@@ -689,6 +691,7 @@
     <Compile Include="entidades\ClMenuE.cs" />
     <Compile Include="entidades\ClCarritoE.cs" />
     <Compile Include="entidades\ClPedidoE.cs" />
+    <Compile Include="entidades\ClPedidoEntregadoE.cs" />
     <Compile Include="entidades\ClRegistrarProveedorE.cs" />
     <Compile Include="entidades\ClVerPedidoE.cs" />
     <Compile Include="Global.asax.cs">
@@ -696,6 +699,7 @@
     </Compile>
     <Compile Include="logica\ClCarritoL.cs" />
     <Compile Include="logica\ClMenuL.cs" />
+    <Compile Include="logica\ClPedidoEntregadoL.cs" />
     <Compile Include="logica\ClPedidoL.cs" />
     <Compile Include="logica\ClRegistrarCategoriaL.cs" />
     <Compile Include="logica\ClRegistrarProveedorL.cs" />
@@ -752,6 +756,13 @@
     </Compile>
     <Compile Include="vista\editarCategoria.aspx.designer.cs">
       <DependentUpon>editarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\pedidosEntregados.aspx.cs">
+      <DependentUpon>pedidosEntregados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\pedidosEntregados.aspx.designer.cs">
+      <DependentUpon>pedidosEntregados.aspx</DependentUpon>
     </Compile>
     <Compile Include="vista\Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
