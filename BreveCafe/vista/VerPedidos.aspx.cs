@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace BreveCafe.vista
 {
@@ -42,5 +43,20 @@ namespace BreveCafe.vista
             txtMesa.Text = ""; 
             CargarPedidos(); 
         }
+
+        protected void btnEntregar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int idPedido = Convert.ToInt32(btn.CommandArgument);
+
+            ClVerPedidoL pedidoL = new ClVerPedidoL();
+            bool actualizado = pedidoL.ActualizarEstadoPedido(idPedido, "Entregado");
+
+            if (actualizado)
+            {
+                CargarPedidos(); // Recargar los pedidos para reflejar el cambio
+            }
+        }
+
     }
 }

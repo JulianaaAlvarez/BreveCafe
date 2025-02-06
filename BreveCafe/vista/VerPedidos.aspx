@@ -14,35 +14,35 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
         }
 
-        .custom-gridview th {
-            background-color: #ffcccc; /* Azul clarito */
-            color: #9a3f3f;
-            padding: 12px 15px;
-            text-align: left;
-            font-size: 14px;
-            font-weight: bold;
-            border-bottom: 2px solid #ddd;
-        }
+            .custom-gridview th {
+                background-color: #ffcccc; /* Azul clarito */
+                color: #9a3f3f;
+                padding: 12px 15px;
+                text-align: left;
+                font-size: 14px;
+                font-weight: bold;
+                border-bottom: 2px solid #ddd;
+            }
 
-        .custom-gridview td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            font-size: 14px;
-            color: #555;
-        }
+            .custom-gridview td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+                color: #555;
+            }
 
-        .custom-gridview tr:nth-child(even) {
-            background-color: #f9f9f9; /* Fondo gris claro */
-        }
+            .custom-gridview tr:nth-child(even) {
+                background-color: #f9f9f9; /* Fondo gris claro */
+            }
 
-        .custom-gridview tr:hover {
-            background-color: #f1f1f1; /* Fondo al pasar el mouse */
-        }
+            .custom-gridview tr:hover {
+                background-color: #f1f1f1; /* Fondo al pasar el mouse */
+            }
 
-        .custom-gridview .gridview-pager {
-            text-align: center;
-            padding: 10px 0;
-        }
+            .custom-gridview .gridview-pager {
+                text-align: center;
+                padding: 10px 0;
+            }
 
         /* Estilos de los botones de paginación */
         .gridview-pager a {
@@ -55,14 +55,14 @@
             transition: background-color 0.3s;
         }
 
-        .gridview-pager a:hover {
-            background-color: #ac4343; /* Fondo rosa más oscuro al pasar el mouse */
-            color: white;
-        }
+            .gridview-pager a:hover {
+                background-color: #ac4343; /* Fondo rosa más oscuro al pasar el mouse */
+                color: white;
+            }
 
-        .gridview-pager a:active {
-            background-color: #ac4343; /* Fondo rosa aún más oscuro al hacer clic */
-        }
+            .gridview-pager a:active {
+                background-color: #ac4343; /* Fondo rosa aún más oscuro al hacer clic */
+            }
 
         .gridview-pager span {
             padding: 8px 12px;
@@ -91,10 +91,17 @@
                 <asp:BoundField DataField="hora" HeaderText="Hora" />
                 <asp:BoundField DataField="estado" HeaderText="Estado" />
                 <asp:BoundField DataField="metodoPago" HeaderText="Método de Pago" />
-                <asp:BoundField DataField="total" HeaderText="Total" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="total" HeaderText="Total" />
                 <asp:BoundField DataField="Mesa" HeaderText="Mesa" />
                 <asp:BoundField DataField="Producto" HeaderText="Producto" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                <asp:TemplateField HeaderText="Acción">
+                    <ItemTemplate>
+                        <asp:Button ID="btnEntregar" runat="server" Text="Entregar" CssClass="btn btn-success btn-sm"
+                            CommandName="Entregar" CommandArgument='<%# Eval("idPedido") %>' OnClick="btnEntregar_Click" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
             </Columns>
         </asp:GridView>
     </div>

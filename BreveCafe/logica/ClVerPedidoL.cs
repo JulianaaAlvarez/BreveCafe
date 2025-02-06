@@ -16,5 +16,11 @@ namespace BreveCafe.logica
         {
             return pedido.obtenerPedidos(mesaNumero);
         }
+
+        public bool ActualizarEstadoPedido(int idPedido, string nuevoEstado)
+        {
+            return pedido.ActualizarEstadoPedido(idPedido, nuevoEstado);
+        }
+
     }
 }
