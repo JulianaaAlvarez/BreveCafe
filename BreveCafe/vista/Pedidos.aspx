@@ -7,6 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         .producto-card {
@@ -37,8 +38,8 @@
 
             <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowCommand="gvCarrito_RowCommand" OnRowDataBound="gvCarrito_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="nombre" HeaderText="Producto" SortExpression="nombre" />
-                    <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio" DataFormatString="{0:C}" />
+                    <asp:BoundField DataField="nombre" HeaderText="Producto" SortExpression="nombre" /> 
+                    <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio" />
                     <asp:TemplateField HeaderText="Cantidad">
                         <ItemTemplate>
                             <asp:Button ID="btnMenos" runat="server" Text="-" CommandName="Menos" CommandArgument='<%# Eval("idProducto") %>' CssClass="btn btn-secondary btn-sm" />
@@ -50,6 +51,11 @@
                         <ItemTemplate>
                             <asp:DropDownList ID="ddlMesa" runat="server" CssClass="form-control">
                             </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Observaciones">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtObservaciones" runat="server" Text='<%# Eval("observaciones") %>' CssClass="form-control"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones">

@@ -11,7 +11,7 @@ namespace BreveCafe.vista
     {
         private ClCarritoL carritoService = new ClCarritoL();
         private ClPedidoL pedidoService = new ClPedidoL();
-        private int idUsuario = 1; // Asegúrate de obtener el ID de usuario de la sesión
+        private int idUsuario = 1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,14 +82,14 @@ namespace BreveCafe.vista
                 // Validar que se haya seleccionado una mesa
                 if (idMesa <= 0)
                 {
-                    MostrarMensaje("Por favor, seleccione una mesa.");
+                    MostrarSweetAlert("Por favor, seleccione una mesa.", "warning");
                     return;
                 }
 
                 // Validar que se haya seleccionado un método de pago
                 if (string.IsNullOrEmpty(metodoPago))
                 {
-                    MostrarMensaje("Por favor, seleccione un método de pago.");
+                    MostrarSweetAlert("Por favor, seleccione un método de pago.", "warning");
                     return;
                 }
 
@@ -97,17 +97,29 @@ namespace BreveCafe.vista
 
                 if (idPedido > 0)
                 {
-                    MostrarMensaje("Pedido confirmado. ¡Gracias por su compra!");
-                    Response.Redirect("DasboardCliente.aspx");
+                    string script = @"
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Pedido confirmado!',
+                    text: 'Gracias por su compra.',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'DasboardCliente.aspx';
+                    }
+                });
+            ";
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "success", script, true);
                 }
                 else
                 {
-                    MostrarMensaje("Hubo un error al procesar su pedido. Por favor, intente nuevamente.");
+                    MostrarSweetAlert("Hubo un error al procesar su pedido. Por favor, intente nuevamente.", "error");
                 }
             }
-            catch // Removemos el parámetro 'ex' ya que no lo estamos usando
+            catch
             {
-                MostrarMensaje("Hubo un error al procesar su pedido. Por favor, intente nuevamente.");
+                MostrarSweetAlert("Hubo un error al procesar su pedido. Por favor, intente nuevamente.", "error");
             }
         }
 
@@ -124,17 +136,26 @@ namespace BreveCafe.vista
                     }
                 }
             }
-            catch (Exception)
+            catch
             {
-                // Si hay algún error en la conversión o al obtener el valor
+                MostrarSweetAlert("Error al obtener la mesa seleccionada.", "error");
             }
             return 0;
         }
 
-        private void MostrarMensaje(string mensaje)
+        // Función para mostrar mensajes con SweetAlert2
+        private void MostrarSweetAlert(string mensaje, string icono)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert",
-                $"alert('{mensaje.Replace("'", "\\'")}');", true);
+            string script = $@"
+        Swal.fire({{
+            icon: '{icono}',
+            title: 'Mensaje',
+            text: '{mensaje.Replace("'", "\\'")}'
+        }});
+    ";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "sweetalert", script, true);
         }
+
     }
 }

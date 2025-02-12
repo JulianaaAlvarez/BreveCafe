@@ -40,7 +40,14 @@ namespace AppBreveCafe.vista
 
             carritoL.AgregarProductoAlCarrito(idUsuario, pedidoProducto);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Producto agregado al carrito');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", @"
+    Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Producto agregado al carrito'
+    });
+", true);
+
         }
     }
 }

@@ -24,6 +24,7 @@
     <!-- Main CSS File -->
     <link href="../assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="../reg/css/styles.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -49,18 +50,18 @@
                 z-index: 9999;
             }
 
-            .navbar-collapse.show {
-                transform: translateX(100%);
-            }
+                .navbar-collapse.show {
+                    transform: translateX(100%);
+                }
 
             .navbar-nav {
                 text-align: center;
                 width: 100%;
             }
 
-            .navbar-nav .nav-item {
-                margin: 10px 0;
-            }
+                .navbar-nav .nav-item {
+                    margin: 10px 0;
+                }
 
             .navbar-close-btn {
                 position: absolute;
@@ -121,20 +122,36 @@
                             </button>
 
                             <ul class="navbar-nav ms-auto">
-                                <li class="nav-item"><a href="../index.aspx" class="nav-link active" style="color: black;">Inicio</a></li>
+                                <li class="nav-item"><a href="inicio.aspx" class="nav-link active" style="color: black;">Inicio</a></li>
                                 <li class="nav-item"><a href="DasboardCliente.aspx" class="nav-link" style="color: black;">Menú</a></li>
-                                <li class="nav-item"><a href="#services" class="nav-link" style="color: black;">Quiénes somos</a></li>
+                                <li class="nav-item"><a href="../CafeDeEspecialidad.aspx" class="nav-link" style="color: black;">Cafe de Especialidad</a></li>
                                 <li class="nav-item"><a href="../ubicacion.aspx" class="nav-link" style="color: black;">Ubicación</a></li>
-                                <li class="nav-item"><a href="Pedidos.aspx" class="nav-link" style="color: black;">carrito</a></li>
                                 <li id="liSesion" runat="server" class="nav-item">
                                     <a href="../login.aspx" class="nav-link" style="color: deepskyblue;">Iniciar sesión</a>
                                 </li>
+                                <li class="nav-item"><a href="Pedidos.aspx" class="nav-link" style="color: black;"><i class="bi bi-cart4"></i></a></li>
                                 <li id="li1" runat="server" class="nav-item">
-                                    <a href="CerrarSesion.aspx" class="nav-link" style="color: deepskyblue;">Cerrar Sesion</a>
+                                    <a href="CerrarSesion.aspx" class="nav-link" style="color: black;"><i class="bi bi-box-arrow-left"></i></a>
                                 </li>
                             </ul>
                         </div>
-                            <asp:Label ForeColor="#0099ff" ID="liInicio" runat="server" Text=""></asp:Label>
+                        <asp:Label ForeColor="white" ID="liInicio" runat="server" Text="Inicio" CssClass="boton"></asp:Label>
+
+                        <style>
+                            .boton {
+                                display: inline-block;
+                                padding: 5px 10px; /* Reduce el tamaño del botón */
+                                background-color: lightcoral;
+                                color: white;
+                                border-radius: 50px; /* Bordes más sutiles */
+                                font-size: 14px; /* Texto más pequeño */
+                                font-weight: bold;
+                                cursor: default;
+                                text-align: center;
+                                text-decoration: none;
+                            }
+                        </style>
+
 
                     </nav>
                 </div>
