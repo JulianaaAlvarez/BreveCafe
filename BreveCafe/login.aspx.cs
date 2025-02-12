@@ -18,12 +18,12 @@ namespace AppBreveCafe
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                Response.Write("<script>alert('El email es obligatorio');</script>");
+                MostrarSweetAlert("Error", "El email es obligatorio", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                Response.Write("<script>alert('La contraseña es obligatoria');</script>");
+                MostrarSweetAlert("Error", "La contraseña es obligatoria", "error");
                 return;
             }
 
@@ -47,18 +47,17 @@ namespace AppBreveCafe
                     {
                         Session["Cliente"] = objUsuario.nombres;
                         Session["rol"] = objUsuario.rol;
-
-                        Response.Redirect("index.aspx");
+                        Response.Redirect("vista/inicio.aspx");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>alert('Contraseña incorrecta');</script>");
+                    MostrarSweetAlert("Error", "Usuario o Contraseña incorrecta", "error");
                 }
             }
             else
             {
-                Response.Write("<script>alert('No se encontró el usuario');</script>");
+                MostrarSweetAlert("Error", "No se encontró el usuario", "error");
             }
         }
 
@@ -68,49 +67,49 @@ namespace AppBreveCafe
 
             if (string.IsNullOrWhiteSpace(txtDocumento.Text))
             {
-                Response.Write("<script>alert('El documento es obligatorio');</script>");
+                MostrarSweetAlert("Error", "El documento es obligatorio", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtNombres.Text))
             {
-                Response.Write("<script>alert('Los nombres son obligatorios');</script>");
+                MostrarSweetAlert("Error", "Los nombres son obligatorios", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtApellidos.Text))
             {
-                Response.Write("<script>alert('Los apellidos son obligatorios');</script>");
+                MostrarSweetAlert("Error", "Los apellidos son obligatorios", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtTelefono.Text))
             {
-                Response.Write("<script>alert('El teléfono es obligatorio');</script>");
+                MostrarSweetAlert("Error", "El teléfono es obligatorio", "error");
                 return;
             }
 
             if (txtTelefono.Text.Length != 10 || !txtTelefono.Text.All(char.IsDigit))
             {
-                Response.Write("<script>alert('El teléfono debe tener exactamente 10 números');</script>");
+                MostrarSweetAlert("Error", "El teléfono debe tener exactamente 10 números", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtEmailRegistro.Text))
             {
-                Response.Write("<script>alert('El email es obligatorio');</script>");
+                MostrarSweetAlert("Error", "El email es obligatorio", "error");
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtContrasenaRegistro.Text))
             {
-                Response.Write("<script>alert('La contraseña es obligatoria');</script>");
+                MostrarSweetAlert("Error", "La contraseña es obligatoria", "error");
                 return;
             }
 
             if (!IsValidEmail(txtEmailRegistro.Text))
             {
-                Response.Write("<script>alert('El email no tiene un formato válido');</script>");
+                MostrarSweetAlert("Error", "El email no tiene un formato válido", "error");
                 return;
             }
             if (!IsValidPassword(txtContrasenaRegistro.Text))
             {
-                Response.Write("<script>alert('La contraseña debe tener al menos 8 caracteres, una mayúscula y un número');</script>");
+                MostrarSweetAlert("Error", "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número", "error");
                 return;
             }
 
@@ -126,17 +125,23 @@ namespace AppBreveCafe
 
             if (result == -1)
             {
-                Response.Write("<script>alert('El correo ya está registrado. Intente con otro correo.');</script>");
+                MostrarSweetAlert("Error", "El correo ya está registrado. Intente con otro correo.", "error");
             }
             else if (result > 0)
             {
                 EnviarCorreo(nuevoUsuario.email, nuevoUsuario.nombres);
-                Response.Write("<script>alert('Usuario registrado con éxito');</script>");
+                MostrarSweetAlert("Éxito", "Usuario registrado con éxito", "success");
             }
             else
             {
-                Response.Write("<script>alert('El usuario no fue registrado');</script>");
+                MostrarSweetAlert("Error", "El usuario no fue registrado", "error");
             }
+        }
+
+        private void MostrarSweetAlert(string titulo, string mensaje, string tipo)
+        {
+            string script = $"Swal.fire('{titulo}', '{mensaje}', '{tipo}');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
         }
 
         private bool IsValidEmail(string email)
@@ -195,11 +200,66 @@ namespace AppBreveCafe
                     mailMessage.To.Add(emailDestinatario);
                     mailMessage.Subject = "Confirmación de registro";
 
-                    mailMessage.Body = $"Hola {nombreUsuario},\n\n" +
-                                       "Gracias por registrarte en nuestra plataforma. Tu cuenta ha sido creada con éxito.\n\n" +
-                                       "¡Bienvenido!";
+                    // Cuerpo del correo en HTML
+                    string htmlBody = $@"
+        <html>
+        <head>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    background-color: #f9f9f9;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                }}
+                .container {{
+                    max-width: 600px;
+                    margin: 20px auto;
+                    background-color: #ffffff;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 20px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }}
+                .header {{
+                    text-align: center;
+                    background-color: #4682B4; /* Azul acero oscuro */
+                    color: #fff;
+                    padding: 10px 0;
+                    border-radius: 8px 8px 0 0;
+                }}
+                .content {{
+                    padding: 20px;
+                    text-align: center;
+                }}
+                .footer {{
+                    text-align: center;
+                    font-size: 12px;
+                    color: #888;
+                    margin-top: 20px;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'>
+                    <h1>¡Bienvenido a BreveCafe!</h1>
+                </div>
+                <div class='content'>
+                    <p>Hola <strong>{nombreUsuario}</strong>,</p>
+                    <p>Gracias por registrarte en nuestra plataforma. Tu cuenta ha sido creada con éxito.</p>
+                    <p>Estamos encantados de tenerte con nosotros.</p>
+                    <p><a href='#' style='color: #4CAF50; text-decoration: none;'>Visita nuestro sitio</a></p>
+                </div>
+                <div class='footer'>
+                    <p>© 2024 BreveCafe. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </body>
+        </html>";
 
-                    mailMessage.IsBodyHtml = false;
+                    mailMessage.Body = htmlBody;
+                    mailMessage.IsBodyHtml = true;
 
                     smtpClient.Send(mailMessage);
                 }
@@ -209,5 +269,6 @@ namespace AppBreveCafe
                 Response.Write("<script>alert('Error al enviar el correo: " + ex.Message + "');</script>");
             }
         }
+
     }
 }

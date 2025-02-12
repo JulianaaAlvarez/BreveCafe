@@ -107,14 +107,6 @@
     <Content Include="assets\img\carajajajaj.jfif" />
     <Content Include="assets\img\chai.jfif" />
     <Content Include="assets\img\Cheesecake.jpeg" />
-    <Content Include="assets\img\clients\client-1.png" />
-    <Content Include="assets\img\clients\client-2.png" />
-    <Content Include="assets\img\clients\client-3.png" />
-    <Content Include="assets\img\clients\client-4.png" />
-    <Content Include="assets\img\clients\client-5.png" />
-    <Content Include="assets\img\clients\client-6.png" />
-    <Content Include="assets\img\clients\client-7.png" />
-    <Content Include="assets\img\clients\client-8.png" />
     <Content Include="assets\img\club.png" />
     <Content Include="assets\img\clus.jfif" />
     <Content Include="assets\img\cocacola.png" />
@@ -168,15 +160,6 @@
     <Content Include="assets\img\mailo.jfif" />
     <Content Include="assets\img\malteada.jfif" />
     <Content Include="assets\img\malteada.png" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-1.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-2.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-3.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-4.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-5.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-6.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-7.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-8.jpg" />
-    <Content Include="assets\img\masonry-portfolio\masonry-portfolio-9.jpg" />
     <Content Include="assets\img\melocoton.png" />
     <Content Include="assets\img\menu-item-05.jpg" />
     <Content Include="assets\img\Milo Frío.png" />
@@ -187,10 +170,6 @@
     <Content Include="assets\img\oblea.png" />
     <Content Include="assets\img\platanocconquesopng.png" />
     <Content Include="assets\img\plato.jpg" />
-    <Content Include="assets\img\portfolio\app-1.jpg" />
-    <Content Include="assets\img\portfolio\books-1.jpg" />
-    <Content Include="assets\img\portfolio\branding-1.jpg" />
-    <Content Include="assets\img\portfolio\product-1.jpg" />
     <Content Include="assets\img\postre.jpg" />
     <Content Include="assets\img\principal.jpeg" />
     <Content Include="assets\img\quesowq.jpg" />
@@ -200,15 +179,6 @@
     <Content Include="assets\img\soda.jpeg" />
     <Content Include="assets\img\sok.png" />
     <Content Include="assets\img\soka.png" />
-    <Content Include="assets\img\team\team-1.jpg" />
-    <Content Include="assets\img\team\team-2.jpg" />
-    <Content Include="assets\img\team\team-3.jpg" />
-    <Content Include="assets\img\team\team-4.jpg" />
-    <Content Include="assets\img\testimonials\testimonials-1.jpg" />
-    <Content Include="assets\img\testimonials\testimonials-2.jpg" />
-    <Content Include="assets\img\testimonials\testimonials-3.jpg" />
-    <Content Include="assets\img\testimonials\testimonials-4.jpg" />
-    <Content Include="assets\img\testimonials\testimonials-5.jpg" />
     <Content Include="assets\img\tonicwater.png" />
     <Content Include="assets\img\waffleCar.jpeg" />
     <Content Include="assets\img\waffleNu.jpg" />
@@ -267,6 +237,7 @@
     <Content Include="assets\vendor\swiper\swiper-bundle.min.css" />
     <Content Include="assets\vendor\swiper\swiper-bundle.min.js" />
     <Content Include="assets\vendor\waypoints\noframework.waypoints.js" />
+    <Content Include="CafeDeEspecialidad.aspx" />
     <Content Include="CafeEspecialidad.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ubicacion.aspx" />
@@ -653,6 +624,8 @@
     <Content Include="vista\css\styleDash.css" />
     <Content Include="vista\DasboardCliente.aspx" />
     <Content Include="vista\editarCategoria.aspx" />
+    <Content Include="vista\inicio.aspx" />
+    <Content Include="vista\menu.aspx" />
     <Content Include="vista\pedidosEntregados.aspx" />
     <Content Include="vista\imagenes\boligrafo.png" />
     <Content Include="vista\imagenes\bote-de-basura.png" />
@@ -673,6 +646,13 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CafeDeEspecialidad.aspx.cs">
+      <DependentUpon>CafeDeEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CafeDeEspecialidad.aspx.designer.cs">
+      <DependentUpon>CafeDeEspecialidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CafeEspecialidad.aspx.cs">
       <DependentUpon>CafeEspecialidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -756,6 +736,20 @@
     </Compile>
     <Compile Include="vista\editarCategoria.aspx.designer.cs">
       <DependentUpon>editarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\inicio.aspx.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\inicio.aspx.designer.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\menu.aspx.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\menu.aspx.designer.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="vista\pedidosEntregados.aspx.cs">
       <DependentUpon>pedidosEntregados.aspx</DependentUpon>

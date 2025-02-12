@@ -9,6 +9,10 @@
    
     <link href="vista/css/styleDash.css" rel="stylesheet" />
     <script src="vista/js/JavaScriptLogin.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
   
     <style>
         html {
@@ -76,7 +80,6 @@
         </div>
     </div>
 </form>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

@@ -194,8 +194,8 @@
                             <p><%# Eval("descripcion") %></p>
                             <span class="precio">Precio: $<%# Eval("precio") %></span>
                             <asp:Button ID="btnPedir" runat="server" Text="Pedir"
-                                CommandName="Pedir" CommandArgument='<%# Eval("idProducto") %>'
-                                CssClass="btn btn-primary" OnCommand="btnPedir_Command" />
+                                CommandName="Añadir al Carrito" CommandArgument='<%# Eval("idProducto") %>'
+                                CssClass="btn btn-info"   OnCommand="btnPedir_Command" />
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

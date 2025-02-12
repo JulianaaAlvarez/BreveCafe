@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="BreveCafe.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="inicio.aspx.cs" Inherits="BreveCafe.vista.inicio" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>BreveCafe</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="assets/img/logobreve.ico" rel="icon">
+    <link href="../assets/img/logobreve.ico" rel="icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -18,11 +18,11 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 
 
@@ -98,12 +98,12 @@
 
    
     <!-- Inicio del header -->
-    <header id="header" class="header d-flex align-items-center fixed-top" style="background-image: url('assets/img/breveladrillosC.png'); color: black; font-size:22px">
+    <header id="header" class="header d-flex align-items-center fixed-top" style="background-image: url('../assets/img/breveladrillosC.png'); color: black; font-size:22px">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
             <a href="index.aspx" class="logo d-flex align-items-center me-auto">
-                <img src="assets/img/breve.png" alt="" style="max-height: 100px; max-width: auto;">
-                <img src="assets/img/logobreve.png" alt="" style="max-height: 75px; max-width: auto;">
+                <img src="../assets/img/breve.png" alt="" style="max-height: 100px; max-width: auto;">
+                <img src="../assets/img/logobreve.png" alt="" style="max-height: 75px; max-width: auto;">
             </a>
 
 
@@ -123,24 +123,36 @@
                     </button>
 
                     <ul class="navbar-nav ms-auto" >
-                        <li class="nav-item"><a href="index.aspx" class="nav-link active" style="color: black;">Inicio</a></li>
-                        <li class="nav-item"><a href="vista/menu.aspx" class="nav-link" style="color: black;">Menú</a></li>
-                        <li class="nav-item"><a href="CafeEspecialidad.aspx" class="nav-link" style="color: black;">Cafe de Especialidad</a></li>
+                        <li class="nav-item"><a href="inicio.aspx" class="nav-link active" style="color: black;">Inicio</a></li>
+                        <li class="nav-item"><a href="DasboardCliente.aspx" class="nav-link" style="color: black;">Menú</a></li>
+                        <li class="nav-item"><a href="../CafeDeEspecialidad.aspx" class="nav-link" style="color: black;">Cafe de Especialidad</a></li>
                         <li class="nav-item"><a href="ubicacion.aspx" class="nav-link" style="color: black;">Ubicación</a></li>
                         <li id="li" runat="server" class="nav-item">
                          <a href="login.aspx" class="nav-link" style="color: deepskyblue;">Iniciar sesión</a>
                         </li>
                         <li id="li2" runat="server" class="nav-item">
-                         <a href="vista/CerrarSesion.aspx" class="nav-link" style="color: deepskyblue;">Cerrar Sesion</a>
+                            <a href="CerrarSesion.aspx" class="nav-link" style="color: black;"><i class="bi bi-box-arrow-left"></i></a>
                         </li>
                     </ul>
 
                 </div>
-                      <asp:Label ForeColor="#0099ff" ID="lblInicio" runat="server" Text=""></asp:Label>
+                     <asp:Label ForeColor="white" ID="lblInicio" runat="server" Text="Inicio" CssClass="boton"></asp:Label>
 
-            </nav>
-
-
+                     <style>
+                         .boton {
+                             display: inline-block;
+                             padding: 5px 10px; /* Reduce el tamaño del botón */
+                             background-color: lightcoral;
+                             color: white;
+                             border-radius: 50px; /* Bordes más sutiles */
+                             font-size: 14px; /* Texto más pequeño */
+                             font-weight: bold;
+                             cursor: default;
+                             text-align: center;
+                             text-decoration: none;
+                         }
+                     </style>
+                </nav>
         </div>
     </header>
 
@@ -153,14 +165,14 @@
                         Descubre tu próximo refugio."</h1>
                     <p>"Un lugar creado para quienes buscan inspiración y momentos únicos en cada visita."</p>
                     <div class="d-flex">
-                        <a href="vista/menu.aspx" class="btn-get-started">Visita Nuestro Menú</a>
+                        <a href="DasboardCliente.aspx" class="btn-get-started">Visita Nuestro Menú</a>
                     </div>
                 </div>
                 
                 <div class="col-lg-6 mt-5 order-1 order-lg-2 hero-img d-flex justify-content-end" data-aos="zoom-out"
                     data-aos-delay="200">
                     <br>
-                    <img src="assets/img/cafe.jpg" class="img-fluid animated" alt=""
+                    <img src="../assets/img/cafe.jpg" class="img-fluid animated" alt=""
                         style="max-width: 75%; height: auto; object-fit: cover;">
                 </div>
             </div>
@@ -208,15 +220,16 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="experience">
-                    <img src="assets/img/plato.jpg" alt="Restaurantes">
+                    <img src="../assets/img/plato.jpg" alt="Restaurantes">
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="experience">
-                    <img src="assets/img/postre.jpg" alt="Pick up">
+                    <img src="../assets/img/postre.jpg" alt="Pick up">
                 </div>
             </div>
         </div>
+        <a href="#" class="btn btn-custom btn-lg">Ver más</a>
     </div>
     <!-- Fin de las imagenes -->
     <section id="about" class="about section">
@@ -250,7 +263,7 @@
                         cafetería es el lugar perfecto para ti. Te esperamos con una sonrisa y una deliciosa
                         variedad de bebidas y postres para todos los gustos.
                     </p>
-                    <a href="CafeEspecialidad.aspx" class="read-more"><span>Descubre más</span><i class="bi bi-arrow-right"></i></a>
+                    <a href="../CafeDeEspecialidad.aspx" class="read-more"><span>Descubre más</span><i class="bi bi-arrow-right"></i></a>
                 </div>
 
 
@@ -278,3 +291,4 @@
 </body>
 
 </html>
+
